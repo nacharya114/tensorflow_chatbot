@@ -122,6 +122,7 @@ def create_model(session, forward_only):
 
 
 def train():
+  sys.setrecursionlimit(10000)
   # prepare dataset
   print("Preparing data in %s" % gConfig['working_directory'])
   print(gConfig)
@@ -198,7 +199,7 @@ def train():
                                        target_weights, bucket_id, True)
           eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
           print("  eval: bucket %d perplexity %.2f" % (bucket_id, eval_ppx))
-        sys.stdout.flush()
+          sys.stdout.flush()
 
 
 def decode():
